@@ -3,6 +3,8 @@ using System.Collections;
 
 public class playerController : MonoBehaviour {
     [SerializeField] private float runSpeed;
+    [SerializeField] private float walkSpeed;
+
     private Rigidbody mRigid;
     private Animator mAnimator;
 
@@ -21,7 +23,16 @@ public class playerController : MonoBehaviour {
         float horizontalMove = Input.GetAxis("Horizontal");
         mAnimator.SetFloat("speed", Mathf.Abs(horizontalMove));
 
-        mRigid.velocity = new Vector3(horizontalMove * runSpeed, mRigid.velocity.y, 0);
+        float sneaking = Input.GetAxisRaw("Fire3");
+        mAnimator.SetFloat("sneaking", sneaking);
+
+        if (sneaking > 0) {
+            mRigid.velocity = new Vector3(horizontalMove * walkSpeed, mRigid.velocity.y, 0);
+        }
+        else {
+            mRigid.velocity = new Vector3(horizontalMove * runSpeed, mRigid.velocity.y, 0);
+        }
+
 
         if (horizontalMove > 0 && !facingRight)
             Flip();
