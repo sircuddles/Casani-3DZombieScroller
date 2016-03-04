@@ -51,8 +51,12 @@ public class playerController : MonoBehaviour {
         float sneaking = Input.GetAxisRaw("Fire3");
         mAnimator.SetFloat("sneaking", sneaking);
 
+        float firing = Input.GetAxis("Fire1");
+        mAnimator.SetFloat("shooting", firing);
+
         // Move player
-        if (grounded && sneaking > 0) {
+        if (grounded && sneaking > 0 || firing > 0) {
+            mAnimator.SetFloat("shooting", firing);
             mRigid.velocity = new Vector3(horizontalMove * walkSpeed, mRigid.velocity.y, 0);
         }
         else {
@@ -72,5 +76,10 @@ public class playerController : MonoBehaviour {
         Vector3 newScale = transform.localScale;
         newScale.z = -newScale.z;
         transform.localScale = newScale;
+    }
+
+    public float GetFacing() {
+        if (facingRight) return 1;
+        else return -1;
     }
 }
