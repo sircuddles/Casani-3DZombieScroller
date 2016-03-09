@@ -9,6 +9,7 @@ public class playerController : MonoBehaviour {
     private Animator mAnimator;
 
     private bool facingRight;
+    private bool running;
 
     // Jumping
     private bool grounded = false;
@@ -28,6 +29,9 @@ public class playerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+
+        running = false;
+
         // Handle jump input and animation 
         if (grounded && Input.GetAxis("Jump") > 0) {
             grounded = false;
@@ -61,6 +65,7 @@ public class playerController : MonoBehaviour {
         }
         else {
             mRigid.velocity = new Vector3(horizontalMove * runSpeed, mRigid.velocity.y, 0);
+            if (Mathf.Abs(horizontalMove) > 0) running = true;
         }
 
         // Flip player if necessary
@@ -82,4 +87,6 @@ public class playerController : MonoBehaviour {
         if (facingRight) return 1;
         else return -1;
     }
+
+    public bool GetRunning() { return running; }
 }

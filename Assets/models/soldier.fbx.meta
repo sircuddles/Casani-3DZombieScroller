@@ -933,11 +933,11 @@ ModelImporter:
       - path: 
         weight: 1
       - path: master
-        weight: 1
+        weight: 0
       - path: master/rig
-        weight: 1
+        weight: 0
       - path: master/rig/bx_root
-        weight: 1
+        weight: 0
       - path: master/rig/bx_root/bn_lower_spine
         weight: 1
       - path: master/rig/bx_root/bn_lower_spine/bn_spine
@@ -1005,29 +1005,29 @@ ModelImporter:
       - path: master/rig/bx_root/bn_lower_spine/bn_spine/bn_neck/bx_jaw_1/bn_jaw
         weight: 1
       - path: master/rig/bx_root/bx_Pelvis
-        weight: 1
+        weight: 0
       - path: master/rig/bx_root/bx_Pelvis/bn_crotch
-        weight: 1
+        weight: 0
       - path: master/rig/bx_root/bx_Pelvis/bn_hip_L
-        weight: 1
+        weight: 0
       - path: master/rig/bx_root/bx_Pelvis/bn_hip_L/bn_knee_L
-        weight: 1
+        weight: 0
       - path: master/rig/bx_root/bx_Pelvis/bn_hip_L/bn_knee_L/bn_ankle_L
-        weight: 1
+        weight: 0
       - path: master/rig/bx_root/bx_Pelvis/bn_hip_L/bn_knee_L/bn_ankle_L/bn_ball_L
-        weight: 1
+        weight: 0
       - path: master/rig/bx_root/bx_Pelvis/bn_hip_L/bn_knee_L/bn_ankle_L/bn_ball_L/bx_toe_L
-        weight: 1
+        weight: 0
       - path: master/rig/bx_root/bx_Pelvis/bn_hip_R
-        weight: 1
+        weight: 0
       - path: master/rig/bx_root/bx_Pelvis/bn_hip_R/bn_knee_R
-        weight: 1
+        weight: 0
       - path: master/rig/bx_root/bx_Pelvis/bn_hip_R/bn_knee_R/bn_ankle_R
-        weight: 1
+        weight: 0
       - path: master/rig/bx_root/bx_Pelvis/bn_hip_R/bn_knee_R/bn_ankle_R/bn_ball_R
-        weight: 1
+        weight: 0
       - path: master/rig/bx_root/bx_Pelvis/bn_hip_R/bn_knee_R/bn_ankle_R/bn_ball_R/bx_toe_R
-        weight: 1
+        weight: 0
       - path: soldier
         weight: 1
       maskType: 0
