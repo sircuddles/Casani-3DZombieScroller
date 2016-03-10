@@ -14,7 +14,7 @@ public class playerHealth : MonoBehaviour {
     Color flashColor = new Color(255f, 255f, 255f, 1f);
     float flashSpeed = 5f;
     bool damaged = false;
-    
+
 
     void Start() {
         currentHealth = maxHealth;
@@ -42,6 +42,11 @@ public class playerHealth : MonoBehaviour {
         if (currentHealth <= 0) {
             makeDead();
         }
+    }
+
+    public void addHealth(float amount) {
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+        playerHealthSlider.value = currentHealth; 
     }
 
     public void makeDead() {
