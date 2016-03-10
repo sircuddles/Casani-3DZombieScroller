@@ -4,6 +4,8 @@ using System.Collections;
 public class healthPickupController : MonoBehaviour {
     public float healthAmount;
 
+    public AudioClip healthSound;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -17,8 +19,9 @@ public class healthPickupController : MonoBehaviour {
     void OnTriggerEnter(Collider other) {
         if (other.tag == "Player") {
             other.GetComponent<playerHealth>().addHealth(healthAmount);
+            Destroy(transform.root.gameObject);
+            AudioSource.PlayClipAtPoint(healthSound, transform.position, 0.4f);
         }
 
-        Destroy(transform.root.gameObject);
     }
 }

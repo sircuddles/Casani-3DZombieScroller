@@ -7,6 +7,7 @@ public class playerHealth : MonoBehaviour {
     public float currentHealth;
 
     public GameObject playerDeathFX;
+    AudioSource playerAS;
 
     //HUD
     public Slider playerHealthSlider;
@@ -21,6 +22,8 @@ public class playerHealth : MonoBehaviour {
         playerHealthSlider.maxValue = maxHealth;
         playerHealthSlider.value = currentHealth;
         playerHealthSlider.minValue = 0;
+
+        playerAS = GetComponent<AudioSource>();
     }
 
     void Update() {
@@ -38,6 +41,8 @@ public class playerHealth : MonoBehaviour {
         currentHealth -= dmg;
         playerHealthSlider.value = currentHealth;
         damaged = true;
+
+        playerAS.Play();
 
         if (currentHealth <= 0) {
             makeDead();

@@ -13,10 +13,15 @@ public class fireBullet : MonoBehaviour {
     int currentRounds;
     public Slider playerAmmoSlider;
 
+    AudioSource gunMuzzleAS;
+    public AudioClip shootSound;
+    public AudioClip reloadSound;
+
     // Use this for initialization
     void Awake () {
         nextBullet = 0f;
         myPC = transform.root.GetComponent<playerController>();
+        gunMuzzleAS = GetComponent<AudioSource>();
 
         currentRounds = startRounds;
         playerAmmoSlider.maxValue = maxRounds;
@@ -36,11 +41,18 @@ public class fireBullet : MonoBehaviour {
             Instantiate(projectile, transform.position, Quaternion.Euler(rot));
             currentRounds--;
             playerAmmoSlider.value = currentRounds;
+            PlaySound(shootSound);
         }
 	}
 
     public void Reload() {
         currentRounds = maxRounds;
         playerAmmoSlider.value = currentRounds;
+        PlaySound(reloadSound);
+    }
+
+    void PlaySound(AudioClip sound) {
+        gunMuzzleAS.clip = sound;
+        gunMuzzleAS.Play();
     }
 }
