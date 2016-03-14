@@ -19,10 +19,16 @@ public class shootBullet : MonoBehaviour {
         gunLine.SetPosition(0, transform.position);
 
         if (Physics.Raycast(shootRay, out shootHit, range, shootableMask)) {
-            gunLine.SetPosition(1, shootHit.point);
+            if (shootHit.collider.tag == "Enemy") {
+                enemyHealth eHP = shootHit.collider.GetComponent<enemyHealth>();
+                if (eHP) {
+                    eHP.addDamage(damage);
+                    eHP.damageFX(shootHit.point, -shootRay.direction);
+                }
+                gunLine.SetPosition(1, shootHit.point);
+            }
+            else gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
         }
-        else gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
     }
-    
 
 }
