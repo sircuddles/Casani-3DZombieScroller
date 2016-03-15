@@ -27,8 +27,9 @@ public class shootBullet : MonoBehaviour {
                 }
                 gunLine.SetPosition(1, shootHit.point);
             }
-            else gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
+            else gunLine.SetPosition(1, shootHit.point);
         }
+        else gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
     }
 
 }
