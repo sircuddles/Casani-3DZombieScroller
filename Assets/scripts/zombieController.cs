@@ -3,6 +3,7 @@ using System.Collections;
 
 public class zombieController : MonoBehaviour {
     public GameObject flipModel;
+    public GameObject ragdollDead;
 
     public AudioClip[] idleSounds;
     public float idleSoundTime;
@@ -111,5 +112,45 @@ public class zombieController : MonoBehaviour {
         Vector3 theScale = flipModel.transform.localScale;
         theScale.z *= -1;
         flipModel.transform.localScale = theScale;
+    }
+
+    public void RagdollDeath() {
+        GameObject ragdoll = (GameObject)Instantiate(ragdollDead, transform.root.position, Quaternion.identity);
+
+        Transform ragdollMaster = ragdoll.transform.Find("master");
+        Transform zombieMaster = transform.root.Find("master");
+
+        bool wasFacingRight = true;
+        if (!facingRight) {
+            wasFacingRight = false;
+            Flip();
+        }
+
+        Transform[] ragdollJoints = ragdollMaster.GetComponentsInChildren<Transform>();
+        Transform[] currentJoints = zombieMaster.GetComponentsInChildren<Transform>();
+
+        for (int i = 0; i < ragdollJoints.Length; i++) {
+            for (int j = 0; j < currentJoints.Length; j++) {
+                if (currentJoints[j].name.CompareTo(ragdollJoints[i].name) == 0) {
+                    ragdollJoints[i].position = currentJoints[j].position;
+                    ragdollJoints[i].rotation = currentJoints[j].rotation;
+                    break;
+                }
+            }
+        }
+
+        if (wasFacingRight) {
+            Vector3 rotVector = new Vector3(0, 0, 0);
+            ragdoll.transform.rotation = Quaternion.Euler(rotVector);
+        }
+        else {
+            Vector3 rotVector = new Vector3(0, 90, 0);
+            ragdoll.transform.rotation = Quaternion.Euler(rotVector);
+        }
+
+        Transform zombieMesh = transform.root.transform.Find("zombieSoldier");
+        Transform ragdollMesh = ragdoll.transform.Find("zombieSoldier");
+
+        ragdollMesh.GetComponent<Renderer>().material = zombieMesh.GetComponent<Renderer>().material;
     }
 }

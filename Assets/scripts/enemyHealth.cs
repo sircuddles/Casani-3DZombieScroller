@@ -31,7 +31,7 @@ public class enemyHealth : MonoBehaviour {
         enemyHealthIndicator.maxValue = maxHealth;
         enemyHealthIndicator.value = currentHealth;
         enemyAS = GetComponent<AudioSource>();
-        burnFX.gameObject.SetActive(false);
+        if (burnFX) burnFX.gameObject.SetActive(false);
     }
 	
 	// Update is called once per frame
@@ -76,7 +76,12 @@ public class enemyHealth : MonoBehaviour {
     }
 
     void makeDead() {
-        // Turn off movement and ragdoll
+        zombieController aZombie = GetComponentInChildren<zombieController>();
+        if (aZombie) {
+            aZombie.RagdollDeath();
+        }
+
+
         Destroy(gameObject.transform.root.gameObject);
         AudioSource.PlayClipAtPoint(deathSound, transform.position, 0.15f);
         if (drops) {
