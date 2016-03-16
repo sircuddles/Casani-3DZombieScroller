@@ -26,7 +26,7 @@ public class enemyHealth : MonoBehaviour {
     AudioSource enemyAS;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         currentHealth = maxHealth;
         enemyHealthIndicator.maxValue = maxHealth;
         enemyHealthIndicator.value = currentHealth;

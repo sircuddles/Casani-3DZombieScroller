@@ -17,7 +17,7 @@ public class playerHealth : MonoBehaviour {
     bool damaged = false;
 
 
-    void Start() {
+    void Awake() {
         currentHealth = maxHealth;
         playerHealthSlider.maxValue = maxHealth;
         playerHealthSlider.value = currentHealth;
