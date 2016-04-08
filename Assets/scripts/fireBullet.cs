@@ -17,6 +17,9 @@ public class fireBullet : MonoBehaviour {
     public AudioClip shootSound;
     public AudioClip reloadSound;
 
+    public Sprite weaponSprite;
+    public Image weaponImage;
+
     // Use this for initialization
     void Awake () {
         nextBullet = 0f;
@@ -34,14 +37,20 @@ public class fireBullet : MonoBehaviour {
             nextBullet = Time.time + timeBetweenBullets;
             Vector3 rot;
 
-            if (myPC.GetFacing() == -1)
-                rot = new Vector3(0, -90, 0);
-            else rot = new Vector3(0, 90, 0);
+            if (myPC) {
+                if (!myPC.facingRight) {
+                    rot = new Vector3(0, -90, 0);
+                }
+                else {
+                    rot = new Vector3(0, 90, 0);
+                }
 
-            Instantiate(projectile, transform.position, Quaternion.Euler(rot));
-            currentRounds--;
-            playerAmmoSlider.value = currentRounds;
-            PlaySound(shootSound);
+
+                Instantiate(projectile, transform.position, Quaternion.Euler(rot));
+                currentRounds--;
+                playerAmmoSlider.value = currentRounds;
+                PlaySound(shootSound);
+            }
         }
 	}
 
@@ -54,5 +63,13 @@ public class fireBullet : MonoBehaviour {
     void PlaySound(AudioClip sound) {
         gunMuzzleAS.clip = sound;
         gunMuzzleAS.Play();
+    }
+
+    public void InitializeWeapon() {
+        PlaySound(reloadSound);
+        nextBullet = 0;
+        playerAmmoSlider.maxValue = maxRounds;
+        playerAmmoSlider.value = currentRounds;
+        weaponImage.sprite = weaponSprite;
     }
 }

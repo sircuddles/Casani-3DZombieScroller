@@ -8,7 +8,10 @@ public class playerController : MonoBehaviour {
     private Rigidbody mRigid;
     private Animator mAnimator;
 
-    private bool facingRight;
+    public bool facingRight
+    {
+        get; private set;
+    }
     private bool running;
 
     // Jumping
@@ -81,11 +84,6 @@ public class playerController : MonoBehaviour {
         Vector3 newScale = transform.localScale;
         newScale.z = -newScale.z;
         transform.localScale = newScale;
-    }
-
-    public float GetFacing() {
-        if (facingRight) return 1;
-        else return -1;
     }
 
     public bool GetRunning() { return running; }
